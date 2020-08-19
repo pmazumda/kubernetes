@@ -1,0 +1,26 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+
+# Scrape config for API servers.
+
+scrape_configs:
+ - job_name: 'node-metrics'
+
+   scheme: http
+   scrape_interval: 5s
+
+   static_configs:
+      - targets: ['10.128.0.6:9100']
+
+ - job_name: 'kube-state-metrics'
+    
+
+   scheme: http
+   scrape_interval: 5s
+
+   static_configs:
+      - targets: ['10.128.0.6:8080']                  

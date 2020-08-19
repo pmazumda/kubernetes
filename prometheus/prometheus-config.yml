@@ -1,0 +1,75 @@
+apiVersion: v1
+data:
+  prometheus.yml: "# my global config\nglobal:\n  scrape_interval:     15s # Set the
+    scrape interval to every 15 seconds. Default is every 1 minute.\n  evaluation_interval:
+    15s # Evaluate rules every 15 seconds. The default is every 1 minute.\n  # scrape_timeout
+    is set to the global default (10s).\n\n\n# Scrape config for API servers.\n\nscrape_configs:\n-
+    job_name: 'kubernetes-apiservers'\n\n  kubernetes_sd_configs:\n  - role: endpoints\n\n
+    \ # Default to scraping over https. If required, just disable this or change to\n
+    \ # `http`.\n  scheme: http\n\n\n  tls_config:\n    #ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt\n
+    \   # To enable certificate verification comment the line below and uncomment
+    the line above.\n    #\n    insecure_skip_verify: true\n  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token\n\n
+    \ # Keep only the default/kubernetes service endpoints for the https port. This\n
+    \ # will add targets for each API server which Kubernetes adds an endpoint to\n
+    \ # the default/kubernetes service.\n  relabel_configs:\n  - source_labels: [__meta_kubernetes_namespace,
+    __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]\n    action:
+    keep\n    regex: default;kubernetes;https\n\n# Scrape config for nodes (kubelet).\n\n-
+    job_name: 'kubernetes-nodes'\n\n  scheme: http\n\n \n  tls_config:\n    \n     insecure_skip_verify:
+    true\n  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token\n\n
+    \ kubernetes_sd_configs:\n  - role: node\n\n  relabel_configs:\n  - action: labelmap\n
+    \   regex: __meta_kubernetes_node_label_(.+)\n\n# Scrape config for Kubelet cAdvisor.\n\n#
+    In Kubernetes 1.7.0-1.7.2, these metrics are only exposed on the cAdvisor\n# HTTP
+    endpoint; use the \"/metrics\" endpoint on the 4194 port of nodes. In\n# that
+    case (and ensure cAdvisor's HTTP server hasn't been disabled with the\n# --cadvisor-port=0
+    Kubelet flag).\n#\n# This job is not necessary and should be removed in Kubernetes
+    1.6 and\n# earlier versions, or it will cause the metrics to be scraped twice.\n-
+    job_name: 'kubernetes-cadvisor'\n\n  # Default to scraping over https. If required,
+    just disable this or change to\n  # `http`.\n  scheme: http\n\n  # Starting Kubernetes
+    1.7.3 the cAdvisor metrics are under /metrics/cadvisor.\n  # Kubernetes CIS Benchmark
+    recommends against enabling the insecure HTTP\n  # servers of Kubernetes, therefore
+    the cAdvisor metrics on the secure handler\n  # are used.\n  metrics_path: /metrics/cadvisor\n\n
+    \ \n  tls_config:\n    #ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt\n
+    \  \n     insecure_skip_verify: true\n  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token\n\n
+    \ kubernetes_sd_configs:\n  - role: node\n\n  relabel_configs:\n  - action: labelmap\n
+    \   regex: __meta_kubernetes_node_label_(.+)\n\n# Example scrape config for service
+    endpoints.\n\n- job_name: 'kubernetes-service-endpoints'\n\n  kubernetes_sd_configs:\n
+    \ - role: endpoints\n\n  relabel_configs:\n  # Example relabel to scrape only
+    endpoints that have\n  # \"example.io/should_be_scraped = true\" annotation.\n
+    \ #  - source_labels: [__meta_kubernetes_service_annotation_example_io_should_be_scraped]\n
+    \ #    action: keep\n  #    regex: true\n  #\n  # Example relabel to customize
+    metric path based on endpoints\n  # \"example.io/metric_path = <metric path>\"
+    annotation.\n  #  - source_labels: [__meta_kubernetes_service_annotation_example_io_metric_path]\n
+    \ #    action: replace\n  #    target_label: __metrics_path__\n  #    regex: (.+)\n
+    \ #\n  # Example relabel to scrape only single, desired port for the service based\n
+    \ # on endpoints \"example.io/scrape_port = <port>\" annotation.\n  #  - source_labels:
+    [__address__, __meta_kubernetes_service_annotation_example_io_scrape_port]\n  #
+    \   action: replace\n  #    regex: ([^:]+)(?::\\d+)?;(\\d+)\n  #    replacement:
+    $1:$2\n  #    target_label: __address__\n  #\n  # Example relabel to configure
+    scrape scheme for all service scrape targets\n  # based on endpoints \"example.io/scrape_scheme
+    = <scheme>\" annotation.\n  #  - source_labels: [__meta_kubernetes_service_annotation_example_io_scrape_scheme]\n
+    \ #    action: replace\n  #    target_label: __scheme__\n  #    regex: (https?)\n
+    \ - action: labelmap\n    regex: __meta_kubernetes_service_label_(.+)\n  - source_labels:
+    [__meta_kubernetes_namespace]\n    action: replace\n    target_label: kubernetes_namespace\n
+    \ - source_labels: [__meta_kubernetes_service_name]\n    action: replace\n    target_label:
+    kubernetes_name\n\n\n# Example scrape config for pods\n#\n# The relabeling allows
+    the actual pod scrape to be configured\n# for all the declared ports (or port-free
+    target if none is declared)\n# or only some ports.\n- job_name: 'kubernetes-pods'\n\n
+    \ kubernetes_sd_configs:\n  - role: pod\n\n  relabel_configs:\n  # Example relabel
+    to scrape only pods that have\n  # \"example.io/should_be_scraped = true\" annotation.\n
+    \ #  - source_labels: [__meta_kubernetes_pod_annotation_example_io_should_be_scraped]\n
+    \ #    action: keep\n  #    regex: true\n  #\n  # Example relabel to customize
+    metric path based on pod\n  # \"example.io/metric_path = <metric path>\" annotation.\n
+    \ #  - source_labels: [__meta_kubernetes_pod_annotation_example_io_metric_path]\n
+    \ #    action: replace\n  #    target_label: __metrics_path__\n  #    regex: (.+)\n
+    \ #\n  # Example relabel to scrape only single, desired port for the pod\n  #
+    based on pod \"example.io/scrape_port = <port>\" annotation.\n  #  - source_labels:
+    [__address__, __meta_kubernetes_pod_annotation_example_io_scrape_port]\n  #    action:
+    replace\n  #    regex: ([^:]+)(?::\\d+)?;(\\d+)\n  #    replacement: $1:$2\n  #
+    \   target_label: __address__\n  - action: labelmap\n    regex: __meta_kubernetes_pod_label_(.+)\n
+    \ - source_labels: [__meta_kubernetes_namespace]\n    action: replace\n    target_label:
+    kubernetes_namespace\n  - source_labels: [__meta_kubernetes_pod_name]\n    action:
+    replace\n    target_label: kubernetes_pod_name\n"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: prometheus-config
