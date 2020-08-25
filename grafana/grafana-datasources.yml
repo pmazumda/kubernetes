@@ -1,0 +1,10 @@
+apiVersion: 1
+datasources:
+ - name: Prometheus-pinak
+   type: prometheus
+   access: proxy
+   orgId: 1
+   url: http://prometheus.monitoring.svc:8080
+   version: 1
+   editable: true
+
