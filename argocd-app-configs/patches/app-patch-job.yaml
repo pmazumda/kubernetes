@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: patch-revisionhistory
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: patch
+          image: bitnami/kubectl
+          command:
+            - "/bin/sh"
+            - "-c"
+            - |
+              for deployment in $(kubectl get deployments -n argocd-poc -o jsonpath='{.items[*].metadata.name}'); do
+                kubectl patch deployment $deployment -n argocd-poc --type='merge' -p '{"spec":{"revisionHistoryLimit":5}}'
+              done

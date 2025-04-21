@@ -1,0 +1,143 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2025-03-22T10:56:42Z"
+  generation: 152
+  name: argocd-poc
+  namespace: argocd
+  resourceVersion: "54602"
+  uid: 6d5dc080-409b-4174-a719-d15b1cf15dcf
+spec:
+  destination:
+    namespace: argocd-poc
+    server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: apps
+    jsonPointers:
+    - /spec/revisionHistoryLimit
+    kind: Deployment
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: helm-guestbook
+    repoURL: https://github.com/pmazumda/kubernetes.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+status:
+  controllerNamespace: argocd
+  health:
+    lastTransitionTime: "2025-03-22T10:56:56Z"
+    status: Healthy
+  history:
+  - deployStartedAt: "2025-03-22T10:56:50Z"
+    deployedAt: "2025-03-22T10:56:53Z"
+    id: 0
+    initiatedBy:
+      username: admin
+    revision: 22437cfbea095f33c7b392dd3891767944fda252
+    source:
+      helm:
+        valueFiles:
+        - values.yaml
+      path: helm-guestbook
+      repoURL: https://github.com/pmazumda/kubernetes.git
+      targetRevision: HEAD
+  operationState:
+    finishedAt: "2025-03-22T10:56:53Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        username: admin
+      retry: {}
+      sync:
+        revision: 22437cfbea095f33c7b392dd3891767944fda252
+        syncOptions:
+        - CreateNamespace=true
+        syncStrategy:
+          hook: {}
+    phase: Succeeded
+    startedAt: "2025-03-22T10:56:50Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: Namespace
+        message: namespace/argocd-poc created
+        name: argocd-poc
+        namespace: ""
+        status: Synced
+        syncPhase: PreSync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/argocd-poc-helm-guestbook created
+        name: argocd-poc-helm-guestbook
+        namespace: argocd-poc
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/argocd-poc-helm-guestbook created
+        name: argocd-poc-helm-guestbook
+        namespace: argocd-poc
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: 22437cfbea095f33c7b392dd3891767944fda252
+      source:
+        helm:
+          valueFiles:
+          - values.yaml
+        path: helm-guestbook
+        repoURL: https://github.com/pmazumda/kubernetes.git
+        targetRevision: HEAD
+        directory:
+          recurse: true
+  reconciledAt: "2025-04-21T08:45:52Z"
+  resources:
+  - health:
+      status: Healthy
+    kind: Service
+    name: argocd-poc-helm-guestbook
+    namespace: argocd-poc
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: argocd-poc-helm-guestbook
+    namespace: argocd-poc
+    status: Synced
+    version: v1
+  sourceHydrator: {}
+  sourceType: Helm
+  summary:
+    images:
+    - gcr.io/heptio-images/ks-guestbook-demo:0.1
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd-poc
+        server: https://kubernetes.default.svc
+      ignoreDifferences:
+      - group: apps
+        jsonPointers:
+        - /spec/revisionHistoryLimit
+        kind: Deployment
+      source:
+        helm:
+          valueFiles:
+          - values.yaml
+        path: helm-guestbook
+        repoURL: https://github.com/pmazumda/kubernetes.git
+        targetRevision: HEAD
+    revision: 22437cfbea095f33c7b392dd3891767944fda252
+    status: Synced
