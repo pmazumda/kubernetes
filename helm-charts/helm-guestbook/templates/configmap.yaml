@@ -1,0 +1,13 @@
+{{ if .Values.configMap.create }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "helm-guestbook.name" . }}
+  labels:
+{{ include "helm-guestbook.labels" . | indent 4 }}
+data:
+{{- range $key, $value := .Values.configMap.env }}
+  {{ $key | quote }}: {{ $value | quote }}
+{{- end }}
+{{ end }}
+

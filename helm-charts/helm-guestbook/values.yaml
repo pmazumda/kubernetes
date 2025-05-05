@@ -45,3 +45,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+configMap:
+  create: true
+  env: {}
+
