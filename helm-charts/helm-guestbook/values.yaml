@@ -50,4 +50,6 @@ affinity: {}
 configMap:
   create: true
   env: {}
-
+    #USER_NAME: 
+    #ORGANIZATION
+    #UNI
