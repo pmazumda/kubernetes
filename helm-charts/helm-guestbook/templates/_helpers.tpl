@@ -12,6 +12,7 @@ Include Labels.
 {{- define "helm-guestbook.labels" -}}
 kubernetes.app.name: helm-guestbook
 kubernetes.app.managedby: argocd
+purpose: dry-run-demo
 {{- end -}}
 
 
