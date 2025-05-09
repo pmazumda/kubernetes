@@ -1,0 +1,66 @@
+1. Can you introduce yourself?
+2. What are your day-to-day tasks as a DevOps engineer?
+3. Can you explain the projects you have worked on?
+4. What is the purpose of `.𝗴𝗶𝘁𝗶𝗴𝗻𝗼𝗿𝗲`?
+5. How do `𝗴𝗶𝘁 𝗺𝗲𝗿𝗴𝗲` and `𝗴𝗶𝘁 𝗿𝗲𝗯𝗮𝘀𝗲` differ?
+6. How do `𝗴𝗶𝘁 𝗿𝗲𝘀𝗲𝘁` and `𝗴𝗶𝘁 𝗿𝗲𝘃𝗲𝗿𝘁` differ?
+7. How do `𝗴𝗶𝘁 𝗳𝗲𝘁𝗰𝗵` and `𝗴𝗶𝘁 𝗽𝘂𝗹𝗹` differ?
+9. How do you check the 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲𝘀 between 𝘁𝘄𝗼 𝗰𝗼𝗺𝗺𝗶𝘁𝘀 in Git?
+10. How do you check the 𝘀𝘁𝗮𝘁𝘂𝘀 of the 𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗱𝗶𝗿𝗲𝗰𝘁𝗼𝗿𝘆 in Git?
+11. While you're in the middle of working on a feature when you realize you need to address an urgent bug fix that requires your 𝗶𝗺𝗺𝗲𝗱𝗶𝗮𝘁𝗲 𝗮𝘁𝘁𝗲𝗻𝘁𝗶𝗼𝗻. How would you handle temporarily setting aside your current changes to focus on the bug fix 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗰𝗼𝗺𝗺𝗶𝘁𝘁𝗶𝗻𝗴 incomplete work?
+12. How do you handle and resolve 𝗖𝗣𝗨-𝗿𝗲𝗹𝗮𝘁𝗲𝗱 tickets?
+13. Where do you configure 𝗗𝗼𝗰𝗸𝗲𝗿 𝗛𝘂𝗯 credentials and 𝗥𝗗𝗦 credentials?
+14. As the sole DevOps engineer working with a few developers, how do you 𝗰𝗼𝗹𝗹𝗮𝗯𝗼𝗿𝗮𝘁𝗲 and 𝗺𝗮𝗻𝗮𝗴𝗲 𝘁𝗮𝘀𝗸𝘀?
+15. What are the differences between 𝘃𝗶𝗿𝘁𝘂𝗮𝗹𝗶𝘇𝗮𝘁𝗶𝗼𝗻 and 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝗶𝘇𝗮𝘁𝗶𝗼𝗻?
+16. Can you explain 𝗩𝗣𝗖𝘀? How can you distinguish between a 𝗽𝗿𝗶𝘃𝗮𝘁𝗲 𝘀𝘂𝗯𝗻𝗲𝘁 and a 𝗽𝘂𝗯𝗹𝗶𝗰 𝘀𝘂𝗯𝗻𝗲𝘁?
+17. What are 𝗡𝗔𝗖𝗟𝘀 and 𝗡𝗔𝗧 𝗴𝗮𝘁𝗲𝘄𝗮𝘆𝘀, and how are they used?
+18. What are 𝗗𝗼𝗰𝗸𝗲𝗿𝗳𝗶𝗹𝗲𝘀 and 𝗽𝗶𝗽𝗲𝗹𝗶𝗻𝗲𝘀? How are they used in 𝗖𝗜/𝗖𝗗?
+19. Where should 𝗡𝗲𝘅𝘂𝘀 credentials be stored securely?
+20. What is 𝗠𝗮𝘃𝗲𝗻, and what are its primary uses?
+21. How do you 𝗶𝗴𝗻𝗼𝗿𝗲 certain 𝗳𝗶𝗹𝗲𝘀 while creating a 𝗗𝗼𝗰𝗸𝗲𝗿𝗳𝗶𝗹𝗲?
+22. What is 𝗘𝗞𝗦, and what are its benefits?
+23. What is a change request, and how is it handled in a DevOps environment?
+24. Can you compare 𝗡𝗟𝗕 (𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗟𝗼𝗮𝗱 𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿) and 𝗔𝗟𝗕 (𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗟𝗼𝗮𝗱 𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿)?
+25. What are the differences between 𝗛𝗧𝗧𝗣 and 𝗛𝗧𝗧𝗣𝗦?
+
+1.   What is the role of an SRE in managing Kubernetes clusters?
+
+Answer: SREs are responsible for the reliability, availability, and performance of Kubernetes clusters. They ensure smooth operations, monitor performance metrics, troubleshoot issues, and implement best practices for efficient resource utilization and scaling.
+
+2.  How do you handle Kubernetes cluster upgrades to minimize downtime?
+
+Answer: SREs typically perform rolling upgrades by updating one node at a time, ensuring the cluster maintains the desired number of replicas during the upgrade process. They monitor the progress and rollback if issues arise.
+
+3.  Describe how you would set up effective monitoring and alerting for a Kubernetes cluster.
+
+Answer: SREs set up monitoring tools like Prometheus and Grafana to collect metrics from the cluster components and applications. They define alerting rules based on critical metrics and configure notification channels to alert the team in case of anomalies.
+
+4.    How would you ensure the security of Kubernetes clusters and applications running within them?
+
+Answer: SREs enforce security best practices, configure RBAC, manage network policies, and use Secrets to store sensitive data securely. Regularly updating Kubernetes and its components with security patches is crucial.
+
+5.  What strategies do you follow to ensure the high availability of applications in Kubernetes?
+
+Answer: SREs use techniques like deploying applications across multiple availability zones, utilizing StatefulSets for stateful applications, and setting up horizontal pod autoscaling to handle varying workloads.
+
+6.   How do you troubleshoot performance issues in a Kubernetes cluster?
+
+Answer: SREs analyze cluster metrics using tools like Prometheus to identify resource bottlenecks. They inspect logs and events, check for overloaded nodes or misconfigured pods, and optimize resource requests and limits.
+
+7.    Explain how you implement disaster recovery for Kubernetes applications and data.
+
+Answer: SREs use backup and restore mechanisms to safeguard critical data. They might employ persistent volumes with backup solutions, create cluster snapshots, and practice disaster recovery drills regularly.
+
+8.   What are the best practices for managing Kubernetes configuration and secrets securely?
+
+Answer: SREs follow the principle of least privilege for access control, use ConfigMaps for non-sensitive configurations, and leverage Kubernetes Secrets to store sensitive data like passwords and API keys.
+
+9.   How do you handle rolling back a deployment in Kubernetes?
+
+Answer: If an issue arises during a deployment, SREs can revert to the previous version by rolling back the Deployment's pod template to the previous configuration using the kubectl rollout undo command.
+
+10.  What actions would you take if a Kubernetes cluster node becomes unresponsive?
+
+Answer: SREs would first try to SSH into the node and troubleshoot the issue. If unsuccessful, they may drain the node, evicting the running pods and rescheduling them on other healthy nodes. If the problem persists, they might consider rebooting the node or replacing it.
+
+Round 2 questions will be posted in next post!!
