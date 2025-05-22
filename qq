@@ -63,4 +63,32 @@ Answer: If an issue arises during a deployment, SREs can revert to the previous 
 
 Answer: SREs would first try to SSH into the node and troubleshoot the issue. If unsuccessful, they may drain the node, evicting the running pods and rescheduling them on other healthy nodes. If the problem persists, they might consider rebooting the node or replacing it.
 
-Round 2 questions will be posted in next post!!
+
+
+
+1. What is AWS CloudWatch?
+ A monitoring and observability service that collects metrics, logs, and events from AWS resources and applications.
+🔹 2. What types of data does CloudWatch collect?
+Metrics (CPU, memory, disk, network)
+Logs (application, OS, AWS service logs)
+Events (state changes, API calls)
+🔹 3. What is a CloudWatch Metric?
+ A time-ordered set of data points representing resource performance or operational health.
+🔹 4. What is a CloudWatch Alarm?
+ A threshold-based trigger that notifies or initiates automated actions when a metric crosses a specified limit.
+🔹 5. How can you monitor custom metrics in CloudWatch?
+ By publishing your own application or business metrics via the CloudWatch API or CloudWatch Agent.
+🔹 6. What is CloudWatch Logs?
+ A centralized service to store, monitor, and analyze logs from AWS services and applications.
+🔹 7. What are CloudWatch Events / EventBridge?
+ CloudWatch Events (now EventBridge) routes real-time events from AWS services or SaaS apps to targets like Lambda, SNS, or SQS.
+🔹 8. How do you set up automated responses using CloudWatch?
+ Use alarms to trigger actions like Auto Scaling, Lambda functions, or SNS notifications.
+🔹 9. What is the difference between CloudWatch and CloudTrail?
+CloudWatch: Focuses on metrics and operational monitoring.
+CloudTrail: Focuses on auditing API calls and user activity.
+🔹 10. How do you optimize CloudWatch costs?
+Use metric filters efficiently
+Set retention policies for logs
+Aggregate data where possible
+Use appropriate alarm evaluation periods
