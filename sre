@@ -1,0 +1,26 @@
+How do you handle rollbacks in your deployment pipeline?
+
+What do you mean by “department pipeline”?
+
+Do you have experience using Docker for personal work?
+
+Do you have experience with Helm charts? What is Helm and how have you used it?
+
+What are the benefits of using Helm?
+
+What are the key considerations for running a Kubernetes cluster in production?
+
+Can you explain the pros and cons of Terraform vs Ansible?
+
+How do you secure an EC2 instance in AWS?
+
+How do you handle tasks like setting up, debugging, or fixing issues on the remote side (remote servers or systems)?
+
+How do you ensure high availability and scalability using Infrastructure as Code (IaC)?
+
+How do you collaborate with Developers, Testers, and the Operations team?
+
+If there’s a task to apply security for the development team to protect client data from leakage, how would you approach it?
+
+
+

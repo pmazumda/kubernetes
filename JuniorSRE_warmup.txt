@@ -1,0 +1,12 @@
+1. Introduce yourself ( the default one 😁 )
+2. What were your daily tasks in your previous company?
+3. What you have achieved in your short career so far?
+4. What does containerization mean, and why is Kubernetes preferred?
+5. How does data flow in a Kubernetes cluster? (K8s networking)
+6. How are PV (Persistent Volume) and PVC (Persistent Volume Claim) related to storage in Kubernetes?
+7. What health probes are available in Kubernetes? How does Kubernetes determine if a pod is ready?
+8. What are the different types of Kubernetes services, and how does Ingress work?
+9. How much experience do you have in handling the databases?
+10. Difference between StatefulSet and Deployment in Kubernetes?
+11. What does Kubernetes administration mean according to you?
+12. How do you approach debugging errors in production environments?
