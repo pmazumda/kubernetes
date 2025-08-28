@@ -4,6 +4,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "helm-guestbook.name" . }}
   labels:
+    app.kubernetes.io: helm-guestbook
 {{ include "helm-guestbook.labels" . | indent 4 }}
 data:
 {{- range $key, $value := .Values.configMap.env }}
