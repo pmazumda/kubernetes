@@ -49,5 +49,6 @@ affinity: {}
 
 configMap:
   create: true
-  env: {}
+  env:
+    USERNAME: default
 
