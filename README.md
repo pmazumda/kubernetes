@@ -1,6 +1,10 @@
 # kubernetes
 This repository contains  few projects I have been  working on
 
+## 🚀 Quick Start
+
+Want to get started quickly? Check out the [QUICKSTART.md](QUICKSTART.md) guide!
+
 ## Projects
 
 ### OpenTofu K8s Setup (`tofu-k8s-setup/`)
