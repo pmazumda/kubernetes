@@ -1,0 +1,19 @@
+# Example Terraform/OpenTofu Variables
+# Copy this file to terraform.tfvars and customize as needed
+
+# Cluster configuration
+cluster_name = "k3s-local"
+k3s_version  = "v1.29.0+k3s1"
+
+# Kubeconfig path (default: ~/.kube/config)
+# kubeconfig_path = "~/.kube/config"
+
+# ArgoCD configuration
+argocd_namespace      = "argocd"
+argocd_version        = "5.51.6"
+argocd_server_host    = "argocd.local"
+enable_argocd_ingress = true
+
+# Ingress controller configuration
+# Set to true if you want to install NGINX ingress instead of using Traefik (k3s default)
+install_nginx_ingress = false

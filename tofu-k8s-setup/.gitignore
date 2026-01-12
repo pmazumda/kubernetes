@@ -1,0 +1,20 @@
+# OpenTofu / Terraform files
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Local kubeconfig
+kubeconfig
+*.kubeconfig
