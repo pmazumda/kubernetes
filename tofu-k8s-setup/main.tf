@@ -67,8 +67,7 @@ resource "helm_release" "nginx_ingress" {
 # Install ArgoCD using Helm
 resource "helm_release" "argocd" {
   depends_on = [
-    kubernetes_namespace.argocd,
-    helm_release.nginx_ingress
+    kubernetes_namespace.argocd
   ]
 
   name       = "argocd"
