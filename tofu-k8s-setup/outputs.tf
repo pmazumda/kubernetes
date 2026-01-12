@@ -57,8 +57,12 @@ output "useful_commands" {
     # Check storage classes
     kubectl get sc
     
-    # Check ingress controllers
+    # Check ingress controllers (if NGINX is installed)
+    %{if var.install_nginx_ingress~}
     kubectl get pods -n ingress-nginx
+    %{else~}
+    kubectl get pods -n kube-system -l app.kubernetes.io/name=traefik
+    %{endif~}
     
     # Access ArgoCD UI
     kubectl port-forward svc/argocd-server -n ${var.argocd_namespace} 8080:443

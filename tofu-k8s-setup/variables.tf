@@ -45,3 +45,9 @@ variable "enable_argocd_ingress" {
   type        = bool
   default     = true
 }
+
+variable "nginx_ingress_version" {
+  description = "NGINX Ingress Controller Helm chart version"
+  type        = string
+  default     = "4.9.0"
+}

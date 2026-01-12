@@ -20,7 +20,7 @@ resource "null_resource" "install_k3s" {
       sudo chown $(id -u):$(id -g) ~/.kube/config
       
       # Wait for all system pods to be ready
-      kubectl wait --for=condition=ready pod --all -n kube-system --timeout=300s || true
+      kubectl wait --for=condition=ready pod --all -n kube-system --timeout=300s
     EOT
   }
 
@@ -49,7 +49,7 @@ resource "helm_release" "nginx_ingress" {
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
   namespace  = "ingress-nginx"
-  version    = "4.9.0"
+  version    = var.nginx_ingress_version
 
   create_namespace = true
 
