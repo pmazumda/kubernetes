@@ -7,7 +7,7 @@ variable "cluster_name" {
 variable "k3s_version" {
   description = "K3s version to install"
   type        = string
-  default     = "v1.28.5+k3s1"
+  default     = "v1.29.0+k3s1"
 }
 
 variable "kubeconfig_path" {
@@ -35,7 +35,13 @@ variable "argocd_server_host" {
 }
 
 variable "install_nginx_ingress" {
-  description = "Whether to install NGINX ingress controller (set to false if using Traefik from k3s)"
+  description = "Whether to install NGINX ingress controller (set to false to use Traefik from k3s)"
   type        = bool
   default     = false
+}
+
+variable "enable_argocd_ingress" {
+  description = "Whether to enable ingress for ArgoCD server"
+  type        = bool
+  default     = true
 }

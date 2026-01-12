@@ -2,13 +2,17 @@
 resource "null_resource" "install_k3s" {
   provisioner "local-exec" {
     command = <<-EOT
-      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${var.k3s_version} sh -s - \
-        --write-kubeconfig-mode 644 \
-        --disable traefik \
-        --disable servicelb
-      
-      # Wait for k3s to be ready
-      sleep 10
+      # Install k3s with or without traefik based on ingress choice
+      if [ "${var.install_nginx_ingress}" = "true" ]; then
+        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${var.k3s_version} sh -s - \
+          --write-kubeconfig-mode 644 \
+          --disable traefik \
+          --disable servicelb
+      else
+        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${var.k3s_version} sh -s - \
+          --write-kubeconfig-mode 644 \
+          --disable servicelb
+      fi
       
       # Copy kubeconfig
       mkdir -p ~/.kube
@@ -62,7 +66,10 @@ resource "helm_release" "nginx_ingress" {
 
 # Install ArgoCD using Helm
 resource "helm_release" "argocd" {
-  depends_on = [kubernetes_namespace.argocd]
+  depends_on = [
+    kubernetes_namespace.argocd,
+    helm_release.nginx_ingress
+  ]
 
   name       = "argocd"
   repository = "https://argoproj.github.io/argo-helm"
@@ -82,11 +89,13 @@ resource "helm_release" "argocd" {
         }
 
         ingress = {
-          enabled          = true
-          ingressClassName = "nginx"
-          annotations = {
+          enabled          = var.enable_argocd_ingress
+          ingressClassName = var.install_nginx_ingress ? "nginx" : "traefik"
+          annotations = var.install_nginx_ingress ? {
             "nginx.ingress.kubernetes.io/force-ssl-redirect" = "false"
             "nginx.ingress.kubernetes.io/backend-protocol"   = "HTTP"
+            } : {
+            "traefik.ingress.kubernetes.io/router.entrypoints" = "web"
           }
           hosts = [var.argocd_server_host]
         }
@@ -103,18 +112,5 @@ resource "helm_release" "argocd" {
   timeout = 600
 }
 
-# Create storage class for local path provisioner (k3s includes this by default)
-resource "kubernetes_storage_class_v1" "local_path" {
-  depends_on = [null_resource.install_k3s]
-
-  metadata {
-    name = "local-path"
-    annotations = {
-      "storageclass.kubernetes.io/is-default-class" = "true"
-    }
-  }
-
-  storage_provisioner = "rancher.io/local-path"
-  reclaim_policy      = "Delete"
-  volume_binding_mode = "WaitForFirstConsumer"
-}
+# Note: K3s includes local-path storage class by default
+# No need to create it explicitly

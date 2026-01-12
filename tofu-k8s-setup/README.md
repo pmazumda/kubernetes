@@ -93,11 +93,26 @@ You can customize the deployment by creating a `terraform.tfvars` file:
 
 ```hcl
 cluster_name          = "my-k3s-cluster"
-k3s_version          = "v1.28.5+k3s1"
+k3s_version          = "v1.29.0+k3s1"
 argocd_namespace     = "argocd"
 argocd_version       = "5.51.6"
 argocd_server_host   = "argocd.local"
+enable_argocd_ingress = true
 install_nginx_ingress = false  # Set to true if you want NGINX instead of Traefik
+```
+
+### Ingress Options
+
+By default, k3s comes with Traefik ingress controller. You have two options:
+
+1. **Use Traefik (default)**: Set `install_nginx_ingress = false`
+   - Traefik is lightweight and included with k3s
+   - ArgoCD will automatically use Traefik for ingress
+
+2. **Use NGINX**: Set `install_nginx_ingress = true`
+   - Installs NGINX ingress controller
+   - K3s will be installed without Traefik
+   - ArgoCD will use NGINX for ingress
 ```
 
 ## Verification
